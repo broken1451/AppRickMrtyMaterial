@@ -1,0 +1,27 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #sidenav mode="push">
+      <mat-toolbar>
+        <span>Rick and morty App</span>
+        <span class="spacer"></span>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon> menu </mat-icon>
+        </button>
+      </mat-toolbar>
+      <mat-nav-list>
+        <a (click)="sidenav.toggle()" mat-list-item [routerLink]="['/heroes/listado']">  <mat-icon mat-list-icon>label</mat-icon>  Listado  </a>
+        <a (click)="sidenav.toggle()" mat-list-item [routerLink]="['/rickMorty/episodie']">  <mat-icon mat-list-icon>tv</mat-icon>  Episodies  </a>
+        <a (click)="sidenav.toggle()" mat-list-item [routerLink]="['/rickMorty/search']">  <mat-icon mat-list-icon>search</mat-icon>  Buscar  </a> 
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-toolbar>
+      <button  mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon> menu </mat-icon>
+      </button>
+Rick And Morty App
+      <span class="spacer"></span>
+      <!-- <span>{{userAuth.usuario}}</span> -->
+    </mat-toolbar>
+   <div class="container">
+      <router-outlet></router-outlet>
+   </div>
+  </mat-sidenav-container>

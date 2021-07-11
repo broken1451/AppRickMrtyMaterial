@@ -1,0 +1,27 @@
+<div class="media">
+  <button mat-button color="primary">Primary</button>
+  <button mat-button color="primary">Primary</button>
+</div>
+
+<div>
+    <mat-card (click)="goToDetails(item)" style="float: left; margin-left: 4%; margin-top: 2%; cursor: pointer;" *ngFor="let item of chatacters" class="example-card">
+        <img mat-card-image [src]="item.image" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p class="media">
+            Name: {{item.name}}
+          </p>
+          <p class="media">
+            Status: {{item.status}}
+          </p>
+          <p class="media">
+            Species: {{item.species}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions class="media">
+          <button mat-button>View Details</button>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
+
+ 

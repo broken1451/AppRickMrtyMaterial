@@ -1,0 +1,29 @@
+<div>
+    <form autocomplete="off" [formGroup]="form" class="example-form">
+        <mat-form-field class="style">
+          <mat-label>Search Character</mat-label>
+          <input (keyup)="searchByName(valueForm.search.value)" type="text" formControlName="search" matInput placeholder="Ex. Rick" value="">
+        </mat-form-field> 
+      </form>
+</div>
+
+<div>
+    <mat-card *ngFor="let item of characterSearched" style="float: left; margin-left: 4%; margin-top: 2%; cursor: pointer;" class="example-card">
+        <img mat-card-image [src]="item.image" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p class="media">
+            <!-- Name: {{item.name}} -->
+          </p>
+          <p class="media">
+            <!-- Status: {{item.status}} -->
+          </p>
+          <p class="media">
+            <!-- Species: {{item.species}} -->
+          </p>
+        </mat-card-content>
+        <mat-card-actions class="media">
+          <button mat-button>View Details</button>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>

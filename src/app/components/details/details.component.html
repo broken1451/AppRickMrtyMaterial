@@ -1,0 +1,20 @@
+<div>
+    <mat-card  style="width: 100% ;float: left; margin-left: 4%; margin-top: 2%; cursor: pointer;" class="example-card">
+        <img mat-card-image [src]='character?.data?.image' alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p class="media">
+            Name: {{character?.data?.name}}
+          </p>
+          <p class="media">
+            Status: {{character?.data?.status}}
+          </p>
+          <p class="media">
+            Species: {{character?.data?.species}} 
+          </p>
+        </mat-card-content>
+        <mat-card-actions class="media">
+          <button mat-button>Back</button>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
