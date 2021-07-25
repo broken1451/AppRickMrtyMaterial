@@ -3,3 +3,14 @@
     margin: auto;
     margin-left: 30%;
 }
+
+.center {
+    display: flex;
+    justify-content: center;
+    height: 60px;
+  }
+  
+  .mat-simple-snackbar span {
+    margin: auto;
+    text-align: center;
+  }

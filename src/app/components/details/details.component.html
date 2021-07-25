@@ -1,4 +1,8 @@
-<div>
+<div class="center" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!loading">
     <mat-card  style="width: 100% ;float: left; margin-left: 4%; margin-top: 2%; cursor: pointer;" class="example-card">
         <img mat-card-image [src]='character?.data?.image' alt="Photo of a Shiba Inu">
         <mat-card-content>
@@ -13,8 +17,8 @@
           </p>
         </mat-card-content>
         <mat-card-actions class="media">
-          <button mat-button>Back</button>
+          <button mat-button (click)="backClicked()">Back</button>
         </mat-card-actions>
       </mat-card>
 
-    </div>
+</div>

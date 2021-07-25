@@ -1,7 +1,7 @@
 <mat-sidenav-container fullscreen>
     <mat-sidenav #sidenav mode="push">
       <mat-toolbar>
-        <span>Rick and morty App</span>
+        <span style="cursor: pointer;">Rick and morty App</span>
         <span class="spacer"></span>
         <button mat-icon-button (click)="sidenav.toggle()">
           <mat-icon> menu </mat-icon>
@@ -13,7 +13,7 @@
         <a (click)="sidenav.toggle()" mat-list-item [routerLink]="['/rickMorty/search']">  <mat-icon mat-list-icon>search</mat-icon>  Buscar  </a> 
       </mat-nav-list>
     </mat-sidenav>
-    <mat-toolbar>
+    <mat-toolbar style="cursor: pointer;">
       <button  mat-icon-button (click)="sidenav.toggle()">
         <mat-icon> menu </mat-icon>
       </button>

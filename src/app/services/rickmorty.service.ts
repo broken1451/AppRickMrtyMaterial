@@ -24,6 +24,20 @@ export class RickmortyService {
     )
   }
 
+  getAllCharactersByPage(page: number) {
+    const params = new HttpParams()
+    .set('page', String(page))
+    return this.httpClient.get(`${environment.baseUrl}/character`, {params}).pipe(
+      take(1),
+      map((data: any)=>{
+        return{
+          info: data.info,
+          data: data.results
+        }
+      })
+    )
+  }
+
   getCharacter(id: number | string) {
     return this.httpClient.get(`${environment.baseUrl}/character/${id}`).pipe(
       take(1),
@@ -51,6 +65,17 @@ export class RickmortyService {
 
   getAllEpisodies() {
     return this.httpClient.get(`${environment.baseUrl}/episode`).pipe(
+      take(1),
+      map((data: any)=>{
+        return{
+          data: data
+        }
+      })
+    )
+  }
+
+  getAllLocations() {
+    return this.httpClient.get(`${environment.baseUrl}/location`).pipe(
       take(1),
       map((data: any)=>{
         return{

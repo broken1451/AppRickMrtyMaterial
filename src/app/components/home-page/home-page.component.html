@@ -1,9 +1,15 @@
-<div class="media">
-  <button mat-button color="primary">Primary</button>
-  <button mat-button color="primary">Primary</button>
+
+<div class="center" *ngIf="loading">
+  <mat-spinner></mat-spinner>
 </div>
 
-<div>
+
+<div class="media" >
+  <button mat-button color="primary" (click)="previous(-1)">Previous</button>
+  <button mat-button color="primary" (click)="next(+1)">Next</button>
+</div>
+
+<div *ngIf="!loading">
     <mat-card (click)="goToDetails(item)" style="float: left; margin-left: 4%; margin-top: 2%; cursor: pointer;" *ngFor="let item of chatacters" class="example-card">
         <img mat-card-image [src]="item.image" alt="Photo of a Shiba Inu">
         <mat-card-content>
@@ -18,7 +24,7 @@
           </p>
         </mat-card-content>
         <mat-card-actions class="media">
-          <button mat-button>View Details</button>
+          <button mat-button (click)="goToDetails(item)" >View Details</button>
         </mat-card-actions>
       </mat-card>
 

@@ -1,9 +1,10 @@
 import { AfterContentInit, AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { RickmortyService } from 'src/app/services/rickmorty.service';
 import { SelectionModel } from '@angular/cdk/collections';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
+import {MatTableDataSource} from '@angular/material/table';
+import { Router } from '@angular/router';
 
 export interface PeriodicElement {
   name: string;
@@ -20,28 +21,42 @@ export interface PeriodicElement {
 })
 export class EpisodiesComponent implements OnInit, AfterViewInit, AfterContentInit {
   public episodies: any[] = [];
+  public locations: any[] = [];
+  public locationsCharacters: any[] = [];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-  ELEMENT_DATA: any[] = [];
-  ELEMENT_DATA1: any[] = [];
+  @ViewChild(MatSort) sort!: MatSort;  
   panelOpenState = false;
   displayedColumns: string[] = [
-    'select',
+    // 'select',
     'episode',
     'name',
     'created',
     'air_date',
+    'icon'
+  ];
+
+  displayedLocation: string[] = [
+    // 'select',
+    'id',
+    'air_date',
+    'created',
+    'episode',
+    'name',
+    'url'
   ];
   boleanCheck: boolean = false;
-  dataSource = new MatTableDataSource<any[]>(this.ELEMENT_DATA);
+  dataSource = new MatTableDataSource<any[]>();
+  dataSourceLocations = new MatTableDataSource<any[]>();
+  dataSourceLocationsCharacter = new MatTableDataSource<any[]>();
   selection = new SelectionModel<any>(true, []);
 
-  constructor(private rickMortyService: RickmortyService) {
-    console.log(this.dataSource.data)
+  constructor(private rickMortyService: RickmortyService, private router: Router) {
+    console.log( this.dataSourceLocations.data )
   }
 
   ngOnInit(): void {
     this.getAllEpisode();
+    this.getAllLocations();
   }
 
   ngAfterViewInit() {
@@ -57,7 +72,14 @@ export class EpisodiesComponent implements OnInit, AfterViewInit, AfterContentIn
     this.rickMortyService.getAllEpisodies().subscribe((data: any) => {
       console.log(data.data);
       this.dataSource.data =  data.data.results;
-      console.log( this.dataSource.data );
+    });
+  }
+
+  getAllLocations() {
+    this.rickMortyService.getAllEpisodies().subscribe((data: any) => {
+      console.log('locations', data.data);
+      this.dataSourceLocations.data =  data.data.results;
+      this.dataSourceLocationsCharacter.data =  data.data.results.characters;
     });
   }
 
@@ -108,9 +130,14 @@ export class EpisodiesComponent implements OnInit, AfterViewInit, AfterContentIn
   checkboxLabel1(acepto?: boolean): any {
     console.log("acepto ====> ", acepto)
     if (!acepto) {
-      console.log('pase pr acaaa !ACEPTOOOOOOO')
+      console.log('pase pr acaaa !ACEPTOOOOOOO')  
       this.boleanCheck = true
     }
+  }
 
+
+  goDetails(episodie: any){
+    this.router.navigate(['/rickMorty/details/', episodie.id])
+    console.log(episodie)
   }
 }

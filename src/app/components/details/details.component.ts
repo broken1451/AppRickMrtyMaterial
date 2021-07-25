@@ -3,6 +3,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { RickmortyService } from 'src/app/services/rickmorty.service';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-details',
@@ -12,8 +14,9 @@ import { Observable } from 'rxjs';
 export class DetailsComponent implements OnInit {
 
   public character: any;
+  public loading: boolean = true;
 
-  constructor(private activateRoute: ActivatedRoute, private rickmortyService: RickmortyService) { }
+  constructor(private activateRoute: ActivatedRoute,private _location: Location,private rickmortyService: RickmortyService) { }
 
   ngOnInit(): void {
   
@@ -22,15 +25,19 @@ export class DetailsComponent implements OnInit {
         return this.getCharacter(id);
       })
     ).subscribe(data=>{
-      this.character = data;
+       setTimeout(() => {
+          this.character = data;
+          this.loading = false
+       }, 2000);
     })
-
-
   }
-
 
   getCharacter(id: string | number): Observable<any>{
     return this.rickmortyService.getCharacter(id)
+  }
+
+  backClicked() {
+    this._location.back();
   }
 
 }
